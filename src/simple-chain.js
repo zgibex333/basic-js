@@ -1,24 +1,38 @@
 const CustomError = require("../extensions/custom-error");
 
 const chainMaker = {
+  array : [], 
+
   getLength() {
-    throw new CustomError('Not implemented');
+      return this.array.length; 
     // remove line with error and write your code here
   },
   addLink(value) {
-    throw new CustomError('Not implemented');
+      typeof value !== 'undefined' ? this.array.push(`( ${value} )`) : this.array.push(`( )`)
+    return this; 
     // remove line with error and write your code here
   },
   removeLink(position) {
-    throw new CustomError('Not implemented');
+      if (position % 1 === 0) {
+          if (position) {
+              this.array.splice(position-1, 1); 
+          }
+      } else {
+        this.array = []
+        throw Error('not a number, or a fractional number, or corresponding to a nonexistent link')
+      }
+    return this; 
     // remove line with error and write your code here
   },
   reverseChain() {
-    throw new CustomError('Not implemented');
+    this.array.reverse(); 
+    return this; 
     // remove line with error and write your code here
   },
   finishChain() {
-    throw new CustomError('Not implemented');
+      const result = this.array.join('~~'); 
+      this.array = []
+    return result;
     // remove line with error and write your code here
   }
 };
